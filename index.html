@@ -5,16 +5,23 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Documentos</title>
+        <link rel="stylesheet" href="css/documentos.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css" 
+        integrity="sha384-REHJTs1r2ErKBuJB0fCK99gCYsVjwxHrSU0N7I1zl9vZbggVJXRMsv/sLlOAGb4M" crossorigin="anonymous">
     </head>
     <body>
         <div id="busca">
-            <input type="text" placeholder="Digite o CPF:" id="inputCPF">
+            <input type="text" placeholder="Digite o CPF" id="inputCPF">
             <button onclick="search()">PESQUISAR</button>
         </div>
-        <div id="resultado">
+        <div id="resultado" class="ocultar">
             <h3 id="tituloDocumentos"></h3>
+            <button onclick="back()"><i class="fas fa-undo"></i></button>
         </div>
 
+        <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
+        <!-- <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-database.js"></script> -->
+        <script src="js/initFirebase.js"></script>
         <script src="js/documentos.js"></script>
     </body>
 </html>
