@@ -13,8 +13,16 @@
     text-align: center;
 }
 
+.bottom{
+    text-align: end;
+}
+
 .font{
     font-family: 'Josefin Sans', sans-serif !important;
     color: white !important;
     /* font-size: 4rem !important; */
-  }
+}
+
+a{
+    text-decoration: none;
+}
