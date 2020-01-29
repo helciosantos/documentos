@@ -34,8 +34,15 @@ function listFiles(cpfValue){
         for (let i=0; i<arquivos.length; i++){
             nomesArquivos.push(arquivos[i].name);
             storage.ref(cpfValue+'/'+nomesArquivos[i]).getDownloadURL().then(function(url){
-                console.log(url);
-                
+                var ul = document.getElementById("list");
+                var li = document.createElement('li');
+                var listItem = '<a href="'+url+'" target="_blank">'+nomesArquivos[i]+'</a>';
+                li.innerHTML = listItem;
+                ul.appendChild(li);  
+                console.log(nomesArquivos[i]);
+                console.log(url);           
+            }).catch(function(error){
+                console.log(error);
             });
             
         }
@@ -45,7 +52,6 @@ function listFiles(cpfValue){
 function next(cpfValue){
     document.getElementById('busca').setAttribute("class", "ocultar");
     document.getElementById('resultado').removeAttribute("class", "ocultar");
-    
 }
 
 function back(){
