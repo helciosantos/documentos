@@ -9,6 +9,7 @@ function validation(cpfValue){
     //Retorna uma promesses que será processada
     storage.ref().child(cpfValue).listAll().then(function(todosArquivos){
         if(todosArquivos.items.length >= 1){
+            listFiles(cpfValue);
             next(cpfValue); 
         } else{
             alert('CPF não cadastrado');
@@ -20,10 +21,31 @@ function validation(cpfValue){
 
 }
 
+function listFiles(cpfValue){
+    document.getElementById('tituloDocumentos').innerHTML = 'Certificados de: '+cpfValue;
+    var storage = firebase.storage();
+    var arquivos;
+    var nomesArquivos = [];
+    var linksArquivos = [];
+    storage.ref().child(cpfValue).listAll().then(function(todosArquivos){
+        arquivos = todosArquivos.items;
+        console.log(arquivos);
+    
+        for (let i=0; i<arquivos.length; i++){
+            nomesArquivos.push(arquivos[i].name);
+            storage.ref(cpfValue+'/'+nomesArquivos[i]).getDownloadURL().then(function(url){
+                console.log(url);
+                
+            });
+            
+        }
+    });
+}
+
 function next(cpfValue){
     document.getElementById('busca').setAttribute("class", "ocultar");
     document.getElementById('resultado').removeAttribute("class", "ocultar");
-    document.getElementById('tituloDocumentos').innerHTML = 'Certificados de: '+cpfValue;
+    
 }
 
 function back(){
